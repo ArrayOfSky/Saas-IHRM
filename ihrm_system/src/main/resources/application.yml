@@ -1,0 +1,14 @@
+server:
+  port: 9002
+spring:
+  application:
+    name: ihrm-system
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: gaoyifeng
+    url: jdbc:mysql://localhost:3306/ihrm?serverTimezone=Asia/Shanghai&characterEncoding=UTF-8&useSSL=false
+    username: root
+  jpa:
+    database: mysql
+    show-sql: true
+    open-in-view: true
