@@ -14,6 +14,7 @@ import java.util.List;
 
 /**
  * (Department)实体类
+ * @author GYF
  */
 @Entity
 @Table(name = "co_department")

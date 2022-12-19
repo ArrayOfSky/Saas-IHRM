@@ -14,6 +14,8 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 public class DeptListResult {
+    //某公司 所有部门列表返回数据
+
     private String companyId;
     private String companyName;
     private String companyManage;

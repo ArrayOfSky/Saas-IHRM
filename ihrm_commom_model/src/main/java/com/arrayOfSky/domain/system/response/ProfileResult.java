@@ -11,6 +11,10 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * @author GYF
+ * 暂时不知道为什么要这个
+ */
 @Setter
 @Getter
 public class ProfileResult {

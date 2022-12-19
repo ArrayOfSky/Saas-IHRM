@@ -12,6 +12,7 @@ import java.util.Set;
 
 /**
  * 用户实体类
+ * @author GYF
  */
 @Entity
 @Table(name = "bs_user")

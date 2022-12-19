@@ -13,6 +13,7 @@ import java.io.Serializable;
  * Author:xzengsf
  * Date:2018/3/22 10:24
  * Description: 菜单权限实体类
+ * @author GYF
  */
 @Entity
 @Table(name = "pe_permission_menu")

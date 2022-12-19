@@ -11,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
 
+/**
+ * @author GYF
+ */
 @Entity
 @Table(name = "pe_permission")
 @Getter

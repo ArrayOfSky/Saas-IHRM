@@ -6,6 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 
+/**
+ * @author GYF
+ */
 @SpringBootApplication(scanBasePackages = "com.arrayOfSky")
 @EntityScan(value = "com.arrayOfSky.domain.system")
 public class SystemApplication {

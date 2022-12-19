@@ -14,7 +14,9 @@ import javax.websocket.server.PathParam;
 import java.util.List;
 import java.util.Map;
 
-//1.解决跨域
+/**
+ * @author GYF
+ */ //1.解决跨域
 @CrossOrigin
 //2.声明restContoller
 @RestController

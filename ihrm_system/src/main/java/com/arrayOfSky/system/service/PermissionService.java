@@ -27,6 +27,9 @@ import java.util.List;
 import java.util.Map;
 import com.arrayOfSky.commom.exception.CommonException;
 
+/**
+ * @author GYF
+ */
 @Service
 @Transactional
 public class PermissionService {

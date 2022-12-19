@@ -12,6 +12,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * @author GYF
+ * 暂时不知道为什么要这个
+ *
+ */
 @Getter
 @Setter
 public class RoleResult implements Serializable {
