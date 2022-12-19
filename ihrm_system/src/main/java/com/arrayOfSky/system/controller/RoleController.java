@@ -6,12 +6,12 @@ import com.arrayOfSky.commom.entity.PageResult;
 import com.arrayOfSky.commom.entity.Result;
 import com.arrayOfSky.commom.entity.ResultCode;
 import com.arrayOfSky.domain.system.Role;
+import com.arrayOfSky.domain.system.response.RoleResult;
 import com.arrayOfSky.system.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
-import javax.management.relation.RoleResult;
 import java.util.List;
 import java.util.Map;
 
@@ -32,7 +32,7 @@ public class RoleController extends BaseController {
         //2.获取到权限的id列表
         List<String> permIds = (List<String>) map.get("permIds");
         //3.调用service完成权限分配
-        roleService.assignPerms(roleId,permIds);
+//        roleService.assignPerms(roleId,permIds);
         return new Result(ResultCode.SUCCESS);
     }
 

@@ -2,7 +2,9 @@ package com.arrayOfSky.system.service;
 
 
 import com.arrayOfSky.commom.entity.ResultCode;
+import com.arrayOfSky.commom.utils.BeanMapUtils;
 import com.arrayOfSky.commom.utils.IdWorker;
+import com.arrayOfSky.commom.utils.PermissionConstants;
 import com.arrayOfSky.domain.system.Permission;
 import com.arrayOfSky.domain.system.PermissionApi;
 import com.arrayOfSky.domain.system.PermissionMenu;
@@ -25,6 +27,7 @@ import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import com.arrayOfSky.commom.exception.CommomException;
 
 @Service
 @Transactional
@@ -73,7 +76,7 @@ public class PermissionService {
                 permissionApiDao.save(api);
                 break;
             default:
-                throw new CommonException(ResultCode.FAIL);
+                throw new CommomException(ResultCode.FAIL);
         }
         //3.保存
         permissionDao.save(perm);
@@ -109,7 +112,7 @@ public class PermissionService {
                 permissionApiDao.save(api);
                 break;
             default:
-                throw new CommonException(ResultCode.FAIL);
+                throw new CommomException(ResultCode.FAIL);
         }
         //3.保存
         permissionDao.save(permission);
@@ -134,7 +137,7 @@ public class PermissionService {
         }else if (type == PermissionConstants.PERMISSION_API) {
             object = permissionApiDao.findById(id).get();
         }else {
-            throw new CommonException(ResultCode.FAIL);
+            throw new CommomException(ResultCode.FAIL);
         }
 
         Map<String, Object> map = BeanMapUtils.beanToMap(object);
@@ -163,6 +166,7 @@ public class PermissionService {
              * 动态拼接查询条件
              * @return
              */
+            @Override
             public Predicate toPredicate(Root<Permission> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
                 List<Predicate> list = new ArrayList<>();
                 //根据父id查询
@@ -213,7 +217,7 @@ public class PermissionService {
                 permissionApiDao.deleteById(id);
                 break;
             default:
-                throw new CommonException(ResultCode.FAIL);
+                throw new CommomException(ResultCode.FAIL);
         }
     }
 }
