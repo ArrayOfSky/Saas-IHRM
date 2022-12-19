@@ -8,9 +8,13 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+/**
+ * @author GYF
+ */
 public class BaseService<T> {
 
 
+    //需要通过companyId 来查询的时候
     protected Specification<T> getSpec(String companyId) {
         Specification<T> spec = new Specification() {
             @Override

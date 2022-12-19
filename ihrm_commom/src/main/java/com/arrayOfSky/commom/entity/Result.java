@@ -1,20 +1,20 @@
 package com.arrayOfSky.commom.entity;
-
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
+/**
+ * @author GYF
+ */
 @Data
 @NoArgsConstructor
 public class Result {
 
-    private boolean success;//是否成功
-    private Integer code;// 返回码
-    private String message;//返回信息
-    private Object data;// 返回数据
+
+    private boolean success;
+    private Integer code;
+    private String message;
+    private Object data;
 
     public Result(ResultCode code) {
         this.success = code.success;

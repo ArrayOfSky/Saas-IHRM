@@ -1,5 +1,8 @@
 package com.arrayOfSky.commom.utils;
 
+/**
+ * @author GYF
+ */
 public class PermissionConstants {
     /**
      * 权限类型 1为菜单 2为功能 3为API

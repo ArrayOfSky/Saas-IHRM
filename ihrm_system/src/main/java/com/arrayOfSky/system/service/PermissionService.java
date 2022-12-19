@@ -14,8 +14,6 @@ import com.arrayOfSky.system.dao.PermissionDao;
 import com.arrayOfSky.system.dao.PermissionMenuDao;
 import com.arrayOfSky.system.dao.PermissionPointDao;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,7 +25,7 @@ import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import com.arrayOfSky.commom.exception.CommomException;
+import com.arrayOfSky.commom.exception.CommonException;
 
 @Service
 @Transactional
@@ -76,7 +74,7 @@ public class PermissionService {
                 permissionApiDao.save(api);
                 break;
             default:
-                throw new CommomException(ResultCode.FAIL);
+                throw new CommonException(ResultCode.FAIL);
         }
         //3.保存
         permissionDao.save(perm);
@@ -112,7 +110,7 @@ public class PermissionService {
                 permissionApiDao.save(api);
                 break;
             default:
-                throw new CommomException(ResultCode.FAIL);
+                throw new CommonException(ResultCode.FAIL);
         }
         //3.保存
         permissionDao.save(permission);
@@ -137,7 +135,7 @@ public class PermissionService {
         }else if (type == PermissionConstants.PERMISSION_API) {
             object = permissionApiDao.findById(id).get();
         }else {
-            throw new CommomException(ResultCode.FAIL);
+            throw new CommonException(ResultCode.FAIL);
         }
 
         Map<String, Object> map = BeanMapUtils.beanToMap(object);
@@ -217,7 +215,7 @@ public class PermissionService {
                 permissionApiDao.deleteById(id);
                 break;
             default:
-                throw new CommomException(ResultCode.FAIL);
+                throw new CommonException(ResultCode.FAIL);
         }
     }
 }

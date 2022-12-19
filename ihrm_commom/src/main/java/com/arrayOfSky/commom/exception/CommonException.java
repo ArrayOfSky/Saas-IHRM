@@ -5,10 +5,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * @author GYF
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CommomException extends Exception{
+public class CommonException extends Exception{
 
     private ResultCode resultCode;
 

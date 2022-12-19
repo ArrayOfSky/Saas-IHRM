@@ -1,5 +1,8 @@
 package com.arrayOfSky.commom.entity;
 
+/**
+ * @author GYF
+ */
 public enum ResultCode {
 
     SUCCESS(true,10000,"操作成功！"),

@@ -2,21 +2,25 @@ package com.arrayOfSky.commom.handler;
 
 import com.arrayOfSky.commom.entity.Result;
 import com.arrayOfSky.commom.entity.ResultCode;
-import com.arrayOfSky.commom.exception.CommomException;
+import com.arrayOfSky.commom.exception.CommonException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * @author GYF
+ */
 @ControllerAdvice
 public class BaseExceptionHandler {
 
     @ExceptionHandler(value = Exception.class)
     public Result error(HttpServletRequest request, HttpServletResponse response,Exception e){
 
-        if(e.getClass()== CommomException.class){
-            CommomException ce = (CommomException) e;
+        //对common进行处理
+        if(e.getClass()== CommonException.class){
+            CommonException ce = (CommonException) e;
             Result result = new Result(ce.getResultCode());
             return result;
         }
