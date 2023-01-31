@@ -9,4 +9,7 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
  * @author GYF
  */
 public interface DepartmentDao extends JpaRepository<Department,String>, JpaSpecificationExecutor<Department> {
+
+    Department findByCodeAndCompanyId(String code, String companyId);
+
 }

@@ -2,22 +2,26 @@ package com.arrayOfSky.system.service;
 
 
 import com.arrayOfSky.commom.utils.IdWorker;
+import com.arrayOfSky.domain.company.Department;
+import com.arrayOfSky.domain.system.Role;
 import com.arrayOfSky.domain.system.User;
+import com.arrayOfSky.system.client.DepartmentFeignClient;
+import com.arrayOfSky.system.dao.RoleDao;
 import com.arrayOfSky.system.dao.UserDao;
+import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author GYF
@@ -31,15 +35,50 @@ public class UserService {
     @Autowired
     private IdWorker idWorker;
 
+    @Autowired
+    private RoleDao roleDao;
+
+    @Autowired
+    private DepartmentFeignClient departmentFeignClient;
+
+
+    @Transactional
+    public void saveAll(List<User> list ,String companyId,String companyName){
+        for (User user : list) {
+            //默认密码
+            user.setPassword(new Md5Hash("123456",user.getMobile(),3).toString());
+            //id
+            user.setId(idWorker.nextId()+"");
+            //基本属性
+            user.setCompanyId(companyId);
+            user.setCompanyName(companyName);
+            user.setInServiceStatus(1);
+            user.setEnableState(1);
+            user.setLevel("user");
+
+            //填充部门的属性
+            Department department = departmentFeignClient.findByCode(user.getDepartmentId(), companyId);
+            if(department != null) {
+                user.setDepartmentId(department.getId());
+                user.setDepartmentName(department.getName());
+            }
+
+            userDao.save(user);
+        }
+    }
+
+
     /**
      * 1.保存用户
      */
     public void save(User user) {
         //设置主键的值
         String id = idWorker.nextId()+"";
-        user.setPassword("123456");//设置初始密码
+        String password = new Md5Hash("666666",user.getMobile(),3).toString();  //1.密码，盐，加密次数
+        user.setPassword(password);//设置初始密码
         user.setEnableState(1);
         user.setId(id);
+        user.setLevel("user");
         //调用dao保存部门
         userDao.save(user);
     }
@@ -114,5 +153,20 @@ public class UserService {
      */
     public void deleteById(String id) {
         userDao.deleteById(id);
+    }
+
+    public void assignRoles(String userId, List<String> roleIds) {
+        User user = userDao.findById(userId).get();
+        Set<Role> roles = new HashSet<>();
+        for(String roleId: roleIds){
+            Role role =roleDao.findById(roleId).get();
+            roles.add(role);
+        }
+        user.setRoles(roles);
+        userDao.save(user);
+    }
+
+    public User findByMobile(String mobile) {
+        return userDao.findByMobile(mobile);
     }
 }

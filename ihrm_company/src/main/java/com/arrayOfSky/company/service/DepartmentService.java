@@ -53,7 +53,9 @@ public class DepartmentService extends BaseService {
     }
 
 
-
+    public Department findByCode(String code, String companyId) {
+        return departmentDao.findByCodeAndCompanyId(code,companyId);
+    }
 
 
 

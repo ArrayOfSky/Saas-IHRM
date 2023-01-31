@@ -1,3 +1,9 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:6868/eureka
+  instance:
+    prefer-ip-address: true
 server:
   port: 9002
 spring:
@@ -12,3 +18,10 @@ spring:
     database: mysql
     show-sql: true
     open-in-view: true
+  redis:
+    host: 127.0.0.1
+    port: 6379
+jwt:
+  config:
+    key: sass-ihrm
+    ttl: 360000

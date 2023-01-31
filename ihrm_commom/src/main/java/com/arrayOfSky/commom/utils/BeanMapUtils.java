@@ -5,6 +5,9 @@ import org.springframework.cglib.beans.BeanMap;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author GYF
+ */
 public class BeanMapUtils {
 
     /**

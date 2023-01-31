@@ -3,6 +3,7 @@ package com.arrayOfSky.system.service;
 
 import com.arrayOfSky.commom.service.BaseService;
 import com.arrayOfSky.commom.utils.IdWorker;
+import com.arrayOfSky.commom.utils.PermissionConstants;
 import com.arrayOfSky.domain.system.Permission;
 import com.arrayOfSky.domain.system.Role;
 import com.arrayOfSky.system.dao.PermissionDao;
@@ -38,24 +39,24 @@ public class RoleService extends BaseService {
     /**
      * 分配权限
      */
-//    public void assignPerms(String roleId,List<String> permIds) {
-//        //1.获取分配的角色对象
-//        Role role = roleDao.findById(roleId).get();
-//        //2.构造角色的权限集合
-//        Set<Permission> perms = new HashSet<>();
-//        for (String permId : permIds) {
-//            Permission permission = permissionDao.findById(permId).get();
-//            //需要根据父id和类型查询API权限列表
-//            List<Permission> apiList = permissionDao.findByTypeAndPid(PermissionConstants.PERMISSION_API, permission.getId());
-//            perms.addAll(apiList);//自定赋予API权限
-//            perms.add(permission);//当前菜单或按钮的权限
-//        }
-//        System.out.println(perms.size());
-//        //3.设置角色和权限的关系
-//        role.setPermissions(perms);
-//        //4.更新角色
-//        roleDao.save(role);
-//    }
+    public void assignPerms(String roleId,List<String> permIds) {
+        //1.获取分配的角色对象
+        Role role = roleDao.findById(roleId).get();
+        //2.构造角色的权限集合
+        Set<Permission> perms = new HashSet<>();
+        for (String permId : permIds) {
+            Permission permission = permissionDao.findById(permId).get();
+            //需要根据父id和类型查询API权限列表
+            List<Permission> apiList = permissionDao.findByTypeAndPid(PermissionConstants.PERMISSION_API, permission.getId());
+            perms.addAll(apiList);//自定赋予API权限
+            perms.add(permission);//当前菜单或按钮的权限
+        }
+        System.out.println(perms.size());
+        //3.设置角色和权限的关系
+        role.setPermissions(perms);
+        //4.更新角色
+        roleDao.save(role);
+    }
 
     /**
      * 添加角色

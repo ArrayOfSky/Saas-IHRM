@@ -48,6 +48,7 @@ public class PermissionController {
      */
     @RequestMapping(value = "/permission", method = RequestMethod.GET)
     public Result findAll(@RequestParam Map map) {
+
         List<Permission> list =  permissionService.findAll(map);
         return new Result(ResultCode.SUCCESS,list);
     }
